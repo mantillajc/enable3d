@@ -195,6 +195,7 @@ export class Physics {
     const offsetY = topLeft.y + height / 2
     const offset = { x: offsetX, y: offsetY }
 
+    // @ts-expect-error
     sprite._bodyOffset = offset
   }
 

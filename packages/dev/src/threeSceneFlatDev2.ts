@@ -37,7 +37,7 @@ class MainScene extends Scene3D {
       if (fruit === 'background') continue
 
       const f = new FLAT.TextureAtlas(this.atlas, fruit)
-      // f.setPixelRatio(2)
+      f.setPixelRatio(1)
       f.setScale(0.75)
       this.ui.scene.add(f)
 
@@ -45,8 +45,8 @@ class MainScene extends Scene3D {
       let y = 50 + Math.random() * 250
 
       if (fruit === 'ground') {
-        x = width / 2
-        y = height - f.currentFrameHeight / 2
+        x = f.frame.width / 2
+        y = height - f.frame.height / 2
       }
 
       f.body = this.matter.addBodyFromFixtures(x, y, bodies[fruit])
