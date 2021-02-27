@@ -1,5 +1,7 @@
 import { Project, Scene3D, PhysicsLoader, ExtendedMesh, FLAT, THREE } from 'enable3d'
 
+import { Tap } from '@enable3d/three-graphics/jsm/tap'
+
 import { NearestFilter, Camera, Scene } from 'three'
 import { Texture, Vector2 } from 'three'
 import { PlaneGeometry } from 'three'
@@ -67,6 +69,13 @@ class MainScene extends Scene3D {
 
     const { orbitControls } = await this.warpSpeed()
     FLAT.initEvents({ canvas: this.renderer.domElement, orbitControls })
+    const size = this.renderer.getSize(new Vector2())
+    FLAT.setSize(size.x, size.y)
+
+    // const tap = new Tap(this.renderer.domElement)
+    // tap.on.down(() => {
+    //   console.log('asdf')
+    // })
 
     this.renderer.autoClear = false // To allow render overlay on top of the 3d camera
     const width = window.innerWidth
@@ -176,7 +185,7 @@ class MainScene extends Scene3D {
 
     // multiline 2 text
     const multiline2 = new FLAT.TextSprite(new FLAT.TextTexture('this is\na very\nlong\ntext', { fontSize: 32 }))
-    multiline2.setPosition(multiline2.width / 2 + 10, 220)
+    multiline2.setPosition(multiline2.textureWidth / 2 + 10, 220)
     multiline2.setDepth(1)
     multiline2.setInteractive({ pixelPerfect: true })
     this.ui.scene.add(multiline2)
@@ -248,7 +257,7 @@ class MainScene extends Scene3D {
     n1.setScale(0.003)
     n1.flipX(true)
     this.scene.add(n1)
-    console.log('Current Frame: ', n1.anims.getFrame())
+    console.log('Current Frame: ', n1.frame.name)
   }
 
   async addHero2() {
@@ -267,7 +276,7 @@ class MainScene extends Scene3D {
     })
 
     const heroPlane = hero
-    const geometry = new THREE.PlaneBufferGeometry(heroPlane.width / 100, heroPlane.height / 100)
+    const geometry = new THREE.PlaneBufferGeometry(heroPlane.textureWidth / 100, heroPlane.textureHeight / 100)
     const material = new THREE.MeshLambertMaterial({
       map: heroPlane.texture,
       transparent: false,
@@ -320,7 +329,7 @@ class MainScene extends Scene3D {
       this.renderer.clearDepth()
       this.renderer.render(this.ui.scene, this.ui.camera)
 
-      FLAT.render(this.ui.camera)
+      FLAT.updateEvents(this.ui.camera)
     }
   }
 

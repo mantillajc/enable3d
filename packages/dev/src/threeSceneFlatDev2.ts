@@ -1,6 +1,8 @@
 import { Project, Scene3D, PhysicsLoader, ExtendedMesh, FLAT, THREE } from 'enable3d'
 import * as Matter from 'matter-js'
 
+import { Tap } from '@enable3d/three-graphics/jsm/tap'
+
 import { Camera, Scene } from 'three'
 
 class MainScene extends Scene3D {
@@ -62,6 +64,15 @@ class MainScene extends Scene3D {
   async create() {
     this.warpSpeed()
 
+    const tap = new Tap(this.renderer.domElement)
+
+    tap.on.down(() => {
+      console.log('w')
+    })
+    tap.on.up(() => {
+      console.log('up')
+    })
+
     this.renderer.autoClear = false // To allow render overlay on top of the 3d camera
     const width = window.innerWidth
     const height = window.innerHeight
@@ -83,7 +94,7 @@ class MainScene extends Scene3D {
       this.renderer.clearDepth()
       this.renderer.render(this.ui.scene, this.ui.camera)
 
-      FLAT.render(this.ui.camera)
+      FLAT.updateEvents(this.ui.camera)
     }
   }
 }
