@@ -4,7 +4,7 @@
  * @license      {@link https://github.com/enable3d/enable3d/blob/master/LICENSE|GNU GPLv3}
  */
 
-import { EventEmitter } from 'eventemitter3'
+import { Events } from '@yandeu/events'
 
 export interface JoyStickButton {
   id: number
@@ -29,7 +29,7 @@ export interface JoyStickAxis extends JoyStickButton {
 // This class is based on a file I found online called toon3d.js
 // Unfortunately I could not find its license or author.
 // I just ported it to TypeScript and improved the code.
-export class JoyStick extends EventEmitter {
+export class JoyStick extends Events {
   id = -1
 
   get add() {

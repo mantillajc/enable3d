@@ -6,7 +6,7 @@
 
 import { SimpleSprite } from './simpleSprite'
 import { Texture } from 'three'
-import { EventEmitter } from 'eventemitter3'
+import { Events } from '@yandeu/events'
 
 interface Frame {
   name: string
@@ -164,11 +164,11 @@ export abstract class ActionSprite extends SimpleSprite {
   protected get _events() {
     return {
       emit: (event: string) => {
-        if (!this._eventEmitter) this._eventEmitter = new EventEmitter()
+        if (!this._eventEmitter) this._eventEmitter = new Events()
         this._eventEmitter.emit(event)
       },
       once: (event: string, callback: Function) => {
-        if (!this._eventEmitter) this._eventEmitter = new EventEmitter()
+        if (!this._eventEmitter) this._eventEmitter = new Events()
         this._eventEmitter.once(event, callback)
       }
     }
