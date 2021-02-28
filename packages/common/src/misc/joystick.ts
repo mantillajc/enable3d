@@ -26,6 +26,9 @@ export interface JoyStickAxis extends JoyStickButton {
   moveDamping: number
 }
 
+export type Delta = { x: number; y: number }
+export type Data = { top: number; right: number }
+
 // This class is based on a file I found online called toon3d.js
 // Unfortunately I could not find its license or author.
 // I just ported it to TypeScript and improved the code.
@@ -80,8 +83,8 @@ export class JoyStick extends Events {
     }
 
     return {
-      onMove: (event: (delta: { x: number; y: number }) => void) => {
-        this.on(`axis_onmove_${element.id}`, delta => {
+      onMove: (event: (delta: Delta) => void) => {
+        this.on(`axis_onmove_${element.id}`, (delta: Delta) => {
           event(delta)
         })
       }
@@ -109,13 +112,13 @@ export class JoyStick extends Events {
     }
 
     return {
-      onClick: (event: (data: { top: number; right: number }) => void) => {
-        this.on(`button_onclick_${element.id}`, data => {
+      onClick: (event: (data: Data) => void) => {
+        this.on(`button_onclick_${element.id}`, (data: Data) => {
           event(data)
         })
       },
       onRelease: (event: (data: { top: number; right: number }) => void) => {
-        this.on(`button_onrelease_${element.id}`, data => {
+        this.on(`button_onrelease_${element.id}`, (data: Data) => {
           event(data)
         })
       }
