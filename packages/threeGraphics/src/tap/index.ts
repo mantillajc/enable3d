@@ -5,7 +5,7 @@ import { Events } from '@yandeu/events'
 export class Tap {
   private _events = new Events()
 
-  private domElement: null | Window = null
+  private domElement: null | HTMLElement = null
 
   _isDown = false
   _isPaused = false
@@ -60,6 +60,67 @@ export class Tap {
     this._isPaused = false
   }
 
+  public get pointerLock() {
+    return {
+      request: () => {
+        return new Promise(resolve => {
+          if (this.pointerLock.isLocked) return
+
+          // listen to pointer lock change events
+          document.addEventListener(
+            'pointerlockchange',
+            e => {
+              resolve(e)
+            },
+            { once: true }
+          )
+
+          this.once.down(() => {
+            this.domElement?.requestPointerLock()
+          })
+        })
+      },
+      exit: () => {
+        return new Promise(resolve => {
+          if (!this.pointerLock.isLocked) return
+
+          // listen to pointer lock change events
+          document.addEventListener(
+            'pointerlockchange',
+            e => {
+              resolve(e)
+            },
+            { once: true }
+          )
+
+          document.exitPointerLock()
+        })
+      },
+      isLocked: !!document.pointerLockElement
+    }
+  }
+
+  /** (once ignores paused) */
+  public get once() {
+    return {
+      down: (callback: Function) => {
+        this._events.once('down', (event: Event) => {
+          callback(event)
+        })
+      },
+      move: (callback: Function) => {
+        this._events.once('move', (event: Event) => {
+          callback(event)
+        })
+      },
+      up: (callback: Function) => {
+        this._events.once('up', (event: Event) => {
+          callback(event)
+        })
+      }
+    }
+  }
+
   public get on() {
     return {
       down: (callback: Function) => {
@@ -89,7 +150,6 @@ export class Tap {
     this._onUp = this._onUp.bind(this)
 
     eventMatrix.forEach(input => {
-      console.log('test', input.name, input.test)
       if (input.test && input.enabled) {
         this.active[input.name] = true
 
@@ -98,14 +158,12 @@ export class Tap {
         el.addEventListener(input.events.up, this._onUp, false)
       }
     })
-
-    console.log(this.active)
   }
 
   private _remove(type: keyof typeof EventTypes) {
     if (!this.active[type]) return
 
-    const el = this.domElement as Window
+    const el = this.domElement as HTMLElement
     if (!el) console.warn('[tap] No domElement found!')
 
     eventMatrix.forEach(input => {
@@ -153,6 +211,11 @@ export class Tap {
     } else {
       x = this._currentPosition.x
       y = this._currentPosition.y
+    }
+
+    if (this.pointerLock.isLocked) {
+      x = e.movementX
+      y = e.movementY
     }
 
     this._position = { x, y }

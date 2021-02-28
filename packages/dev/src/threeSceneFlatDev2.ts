@@ -72,6 +72,17 @@ class MainScene extends Scene3D {
     tap.on.up(() => {
       console.log('up')
     })
+    tap.on.move(({ position }) => {})
+
+    tap.pointerLock.request().then(event => {
+      console.log(event)
+
+      setTimeout(() => {
+        tap.pointerLock.exit().then(event => {
+          console.log(event)
+        })
+      }, 2500)
+    })
 
     this.renderer.autoClear = false // To allow render overlay on top of the 3d camera
     const width = window.innerWidth
