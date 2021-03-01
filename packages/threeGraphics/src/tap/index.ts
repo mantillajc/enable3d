@@ -1,9 +1,30 @@
+/**
+ * @author       Yannick Deubel (https://github.com/yandeu)
+ * @copyright    Copyright (c) 2021 Yannick Deubel; Project Url: https://github.com/yandeu/tap
+ * @license      {@link https://github.com/yandeu/tap/blob/master/LICENSE|MIT}
+ * @description  Inspired by tapjs (https://www.npmjs.com/package/tapjs)
+ */
+
 import { eventMatrix } from './eventMatrix'
 import { EventTypes } from './types'
 import { Events } from '@yandeu/events'
 
+interface TapEvent {
+  position: { x: number; y: number }
+  event: Event
+  dragging?: boolean
+}
+
+type TapCallback = (data?: TapEvent) => void
+
+interface EventMap {
+  down: (event: TapEvent) => void
+  move: (event: TapEvent) => void
+  up: (event: TapEvent) => void
+}
+
 export class Tap {
-  private _events = new Events()
+  private _events = new Events<EventMap>()
 
   private domElement: null | HTMLElement = null
 
@@ -103,19 +124,19 @@ export class Tap {
   /** (once ignores paused) */
   public get once() {
     return {
-      down: (callback: Function) => {
-        this._events.once('down', (event: Event) => {
-          callback(event)
+      down: (callback: TapCallback) => {
+        this._events.once('down', data => {
+          callback(data)
         })
       },
-      move: (callback: Function) => {
-        this._events.once('move', (event: Event) => {
-          callback(event)
+      move: (callback: TapCallback) => {
+        this._events.once('move', data => {
+          callback(data)
         })
       },
-      up: (callback: Function) => {
-        this._events.once('up', (event: Event) => {
-          callback(event)
+      up: (callback: TapCallback) => {
+        this._events.once('up', data => {
+          callback(data)
         })
       }
     }
@@ -123,19 +144,19 @@ export class Tap {
 
   public get on() {
     return {
-      down: (callback: Function) => {
-        this._events.on('down', (event: Event) => {
-          if (!this._isPaused) callback(event)
+      down: (callback: TapCallback) => {
+        this._events.on('down', data => {
+          if (!this._isPaused) callback(data)
         })
       },
-      move: (callback: Function) => {
-        this._events.on('move', (event: Event) => {
-          if (!this._isPaused) callback(event)
+      move: (callback: TapCallback) => {
+        this._events.on('move', data => {
+          if (!this._isPaused) callback(data)
         })
       },
-      up: (callback: Function) => {
-        this._events.on('up', (event: Event) => {
-          if (!this._isPaused) callback(event)
+      up: (callback: TapCallback) => {
+        this._events.on('up', data => {
+          if (!this._isPaused) callback(data)
         })
       }
     }
