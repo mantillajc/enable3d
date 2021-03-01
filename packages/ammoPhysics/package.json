@@ -31,7 +31,7 @@
   "dependencies": {
     "@enable3d/common": "^0.22.0-dev.1",
     "@enable3d/three-wrapper": "^0.22.0-dev.1",
-    "@yandeu/events": "0.0.3"
+    "@yandeu/events": "0.0.4"
   },
   "peerDependencies": {
     "three": "~0.125.2"

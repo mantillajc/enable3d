@@ -205,18 +205,24 @@ export class Tap {
       this._remove(key as keyof typeof EventTypes)
     })
 
+    this._events.removeAllListeners()
+
+    // @ts-ignore
+    this._events = null
+    // @ts-ignore
+    this.domElement = null
+    // @ts-ignore
+    this._isDown = null
+    // @ts-ignore
+    this._isPaused = null
     // @ts-ignore
     this.active = null
     // @ts-ignore
     this.registered = null
     // @ts-ignore
-    this.domElement = null
-    // @ts-ignore
     this._currentPosition = null
     // @ts-ignore
     this._lastPosition = null
-
-    this._events.removeAllListeners()
   }
 
   private _calcPosition(e: any) {

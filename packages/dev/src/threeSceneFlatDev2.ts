@@ -2,6 +2,7 @@ import { Project, Scene3D, PhysicsLoader, ExtendedMesh, FLAT, THREE } from 'enab
 import * as Matter from 'matter-js'
 
 import { Tap } from '@enable3d/three-graphics/jsm/tap'
+import { Keyboard } from '@enable3d/three-graphics/jsm/keyboard'
 
 import { Camera, Scene } from 'three'
 
@@ -64,25 +65,64 @@ class MainScene extends Scene3D {
   async create() {
     this.warpSpeed()
 
+    // check https://keycode.info/ (event.code)
+    const keyboard = new Keyboard()
+
+    // keyboard.watch.down(keyCode => {
+    //   console.log('down', keyCode)
+    // })
+
+    // keyboard.watch.up(keyCode => {
+    //   console.log('up', keyCode)
+    // })
+
+    keyboard.once.down('KeyE KeyR', keyCode => {
+      console.log(`${keyCode} is down.`)
+    })
+
+    keyboard.on.down('KeyQ', keyCode => {
+      console.log(`${keyCode} is down.`)
+    })
+
+    keyboard.on.down('KeyL KeyK Space', keyCode => {
+      console.log(`${keyCode} is down.`)
+    })
+
+    keyboard.on.up('KeyL', () => {
+      console.log('KeyL is up.')
+    })
+
+    setTimeout(() => {
+      keyboard.destroy()
+    }, 5000)
+
+    // keyboard.once.up('KeyL', () => {
+    //   console.log('LL UP ONCE')
+    // })
+
+    // setInterval(() => {
+    //   console.log(keyboard.key('KeyW').isDown)
+    // }, 1000)
+
     const tap = new Tap(this.renderer.domElement)
 
-    tap.on.down(() => {
-      console.log('w')
-    })
-    tap.on.up(() => {
-      console.log('up')
-    })
-    tap.on.move(({ position }) => {})
+    // tap.on.down(() => {
+    //   console.log('w')
+    // })
+    // tap.on.up(() => {
+    //   console.log('up')
+    // })
+    // tap.on.move(({ position }) => {})
 
-    tap.pointerLock.request().then(event => {
-      console.log(event)
+    // tap.pointerLock.request().then(event => {
+    //   console.log(event)
 
-      setTimeout(() => {
-        tap.pointerLock.exit().then(event => {
-          console.log(event)
-        })
-      }, 2500)
-    })
+    //   setTimeout(() => {
+    //     tap.pointerLock.exit().then(event => {
+    //       console.log(event)
+    //     })
+    //   }, 2500)
+    // })
 
     this.renderer.autoClear = false // To allow render overlay on top of the 3d camera
     const width = window.innerWidth
