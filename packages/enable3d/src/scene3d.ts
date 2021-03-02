@@ -110,7 +110,7 @@ export class Scene3D implements Partial<ThreeGraphics> {
     // @ts-ignore
     obj = null
   }
-  public async warpSpeed(...features: Plugins.WarpedStartFeatures[]) {
+  public async warpSpeed(...features: Plugins.WarpedStartFeatures[]): Promise<Plugins.WarpSpeedOptions> {
     return await this.ws.warpSpeed(...features)
   }
   public get animationMixers() {

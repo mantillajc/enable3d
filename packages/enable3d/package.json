@@ -36,6 +36,9 @@
     "@enable3d/three-graphics": "^0.22.0-dev.1",
     "@enable3d/three-wrapper": "^0.22.0-dev.1"
   },
+  "peerDependencies": {
+    "three": "~0.125.2"
+  },
   "funding": {
     "url": "https://github.com/sponsors/yandeu"
   }
