@@ -15,5 +15,5 @@ import startHeadless from './headless'
 
 // flat_EXPERIMENTAL
 // startProjectFlatDev0()
-// startProjectFlatDev1()
-startProjectFlatDev2()
+startProjectFlatDev1()
+// startProjectFlatDev2()

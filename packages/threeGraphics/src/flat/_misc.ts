@@ -6,7 +6,7 @@
 
 import { Camera, LinearFilter, Raycaster, Texture, Vector2 } from 'three'
 import type { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { Tap } from '../tap'
+import { Tap } from '@yandeu/tap'
 import { SimpleSprite } from './simpleSprite'
 
 // https://stackoverflow.com/a/7838871

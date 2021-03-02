@@ -1,7 +1,7 @@
 import { Project, Scene3D, PhysicsLoader, ExtendedMesh, FLAT, THREE } from 'enable3d'
 import * as Matter from 'matter-js'
 
-import { Tap } from '@enable3d/three-graphics/jsm/tap'
+// import { Tap } from '@enable3d/three-graphics/jsm/tap'
 import { Keyboard } from '@enable3d/three-graphics/jsm/keyboard'
 
 import { Camera, Scene } from 'three'
@@ -104,7 +104,7 @@ class MainScene extends Scene3D {
     //   console.log(keyboard.key('KeyW').isDown)
     // }, 1000)
 
-    const tap = new Tap(this.renderer.domElement)
+    // const tap = new Tap(this.renderer.domElement)
 
     // tap.on.down(() => {
     //   console.log('w')

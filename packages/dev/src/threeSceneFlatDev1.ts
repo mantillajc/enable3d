@@ -1,7 +1,5 @@
 import { Project, Scene3D, PhysicsLoader, ExtendedMesh, FLAT, THREE } from 'enable3d'
 
-import { Tap } from '@enable3d/three-graphics/jsm/tap'
-
 import { NearestFilter, Camera, Scene } from 'three'
 import { Texture, Vector2 } from 'three'
 import { PlaneGeometry } from 'three'
