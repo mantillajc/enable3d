@@ -191,7 +191,7 @@ class Third extends ThreeGraphics {
     // @ts-ignore
     obj = null
   }
-  public async warpSpeed(...features: Plugins.WarpedStartFeatures[]): Promise<Plugins.WarpSpeedOptions> {
+  public async warpSpeed(...features: Plugins.WarpedStartFeatures[]) {
     return await this.ws.warpSpeed(...features)
   }
   public haveSomeFun(numberOfElements: number = 20) {
