@@ -16,6 +16,8 @@ class MainScene extends Scene3D {
   matter = new FLAT.physics()
   ball: FLAT.SimpleSprite
 
+  async init() {}
+
   async preload() {
     // load atlas
     this.load.preload('ninja.png', '/assets/atlas/ninja-texture-atlas.png')
@@ -24,8 +26,7 @@ class MainScene extends Scene3D {
     this.load.preload('hero', '/assets/adventurer-Sheet.png')
     this.load.preload('grass', '/assets/grass.jpg')
 
-    // load texture and add to cache (Experimental)
-    await this.load.texture('button_one', '/assets/button_sprite_sheet.png')
+    await this.load.preload('button_one', '/assets/button_sprite_sheet.png')
   }
 
   addMatter() {
@@ -62,7 +63,6 @@ class MainScene extends Scene3D {
   }
 
   async create() {
-    // just to test the cache
     this.cache.add('myAtlas', await this.load.textureAtlas('ninja.png', 'ninja.json'))
 
     const { orbitControls } = await this.warpSpeed()
@@ -70,10 +70,11 @@ class MainScene extends Scene3D {
     const size = this.renderer.getSize(new Vector2())
     FLAT.setSize(size.x, size.y)
 
-    // const tap = new Tap(this.renderer.domElement)
-    // tap.on.down(() => {
-    //   console.log('asdf')
-    // })
+    this.deconstructor.add(FLAT /* same effect as FLAT.destroy */, this.matter, orbitControls)
+
+    setTimeout(() => {
+      this.restart()
+    }, 5000)
 
     this.renderer.autoClear = false // To allow render overlay on top of the 3d camera
     const width = window.innerWidth
@@ -116,7 +117,7 @@ class MainScene extends Scene3D {
     })
     rect.setInteractive()
     rect.onInputDown = () => {
-      console.log('You clicked the rectancle')
+      console.log('You clicked the rectangle')
     }
     rect.setPosition(60, height - 60)
 
@@ -201,12 +202,12 @@ class MainScene extends Scene3D {
     }
   }
 
-  addButtons() {
+  async addButtons() {
     // https://codepen.io/yandeu/pen/OdYdbp
     const width = window.innerWidth
     const height = window.innerHeight
 
-    const texture = this.cache.get('button_one') as Texture
+    const texture = await this.load.texture('button_one')
     texture.name = 'btn1'
 
     const btn1 = new FLAT.Button(texture, { width: 193, height: 71 }, 2, 1, 0)

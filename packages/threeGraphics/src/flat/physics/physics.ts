@@ -70,6 +70,11 @@ export class Physics {
 
   _objects: Map<string, SimpleSprite> = new Map()
 
+  destroy() {
+    World.clear(this.world, false)
+    Engine.clear(this.engine)
+  }
+
   parsePhysics(file: string) {
     const json = JSON.parse(file) as JSONHashPhysicsShapes
     delete json['generator_info']
