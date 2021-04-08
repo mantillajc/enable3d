@@ -1,5 +1,5 @@
 import { Mesh, MeshStandardMaterial, PlaneBufferGeometry, Scene, Texture, Vector2, WebGLRenderer } from 'three'
-import { Water } from 'three/examples/jsm/objects/Water2'
+import { Water2 } from 'three/examples/jsm/objects/Water2'
 import { Color } from '@enable3d/common/src/types'
 
 // from this example:
@@ -44,7 +44,7 @@ const addWater = (scene: Scene, renderer: WebGLRenderer, config: AddWaterConfig 
 
   // water
   const waterGeometry = new PlaneBufferGeometry(width, height)
-  const water = new Water(waterGeometry, {
+  const water = new Water2(waterGeometry, {
     color: color,
     scale: scale,
     flowDirection: new Vector2(flowX, flowY),
