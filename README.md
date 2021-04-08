@@ -30,7 +30,18 @@ Visit the [enable3d website](https://enable3d.io) for documentation and examples
 
 ## Upgrade to v0.22.0
 
-TODO
+Enable3d now depends on the dependencies below. They are all listed as [peerDependencies](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#peerdependencies).
+
+````json
+{
+  "@types/matter-js": "^0.14.10",
+  "@types/three": "~0.127.0",
+  "matter-js": "^0.16.1",
+  "phaser": "^3.52.0",
+  "poly-decomp": "^0.3.0",
+  "three": "~0.127.0"
+}
+```
 
 ## Upgrade to v0.21.0
 
@@ -63,7 +74,7 @@ const config = {
   scene: [MainScene],
   ...Canvas()
 }
-```
+````
 
 ## Packages
 
