@@ -28,6 +28,14 @@ Written in TypeScript, uses three.js and ammo.js, brings physics to your three.j
 
 Visit the [enable3d website](https://enable3d.io) for documentation and examples.
 
+## Upgrade to v0.22.0
+
+TODO
+
+## Upgrade to v0.21.0
+
+_Nothing special to mention._
+
 ## Upgrade to v0.20.0
 
 ### ES2015
