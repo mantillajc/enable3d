@@ -826,7 +826,7 @@ class AmmoPhysics extends Events {
   protected addExisting(object: ExtendedObject3D, config: Types.AddExistingConfig = {}): any {
     const { hasBody } = object
     if (hasBody) {
-      console.warn(`[Enable3d]: Object "${object.name}" already has a physical body!`)
+      logger(`Object "${object.name}" already has a physical body!`)
       return
     }
 
