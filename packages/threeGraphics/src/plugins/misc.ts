@@ -2,7 +2,7 @@
 import { AddWaterConfig, addWater } from './water'
 import { Material, RepeatWrapping, Scene, Texture, WebGLRenderer } from 'three'
 import { Factories } from '.'
-import { logger } from 'common/src/logger'
+import { logger } from '@enable3d/common/dist/logger'
 
 export default class Misc {
   constructor(private scene: Scene, private renderer: WebGLRenderer, private factories: Factories) {}

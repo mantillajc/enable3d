@@ -9,7 +9,7 @@ import * as Phaser from 'phaser'
 import { ThreeGraphicsConfig } from '@enable3d/common/dist/types'
 import { WarpedStartFeatures } from '@enable3d/three-graphics/jsm/plugins'
 import { Color } from 'three'
-import { logger } from 'common/src/logger'
+import { logger } from '@enable3d/common/dist/logger'
 
 export class Scene3D extends Phaser.Scene {
   constructor(config: string | Phaser.Types.Scenes.SettingsConfig) {

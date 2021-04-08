@@ -9,7 +9,7 @@ import * as Types from '@enable3d/common/dist/types'
 import Cameras from './plugins/cameras'
 import { AmmoPhysics } from '@enable3d/ammo-physics/dist/index'
 import { sRGBEncoding } from 'three'
-import { logger } from 'common/src/logger'
+import { logger } from '@enable3d/common/dist/logger'
 
 export class ThreeGraphics {
   public cache: typeof THREE.Cache

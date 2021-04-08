@@ -7,7 +7,7 @@
 import { ThreeGraphics } from '@enable3d/three-graphics/jsm'
 import { Scene3D } from './scene3d'
 import { ThreeGraphicsConfig } from '@enable3d/common/dist/types'
-import { logger } from 'common/src/logger'
+import { logger } from '@enable3d/common/dist/logger'
 
 interface Scene3DConfig extends Omit<ThreeGraphicsConfig, 'camera' | 'usePhysics' | 'enableXR'> {
   parent?: string
