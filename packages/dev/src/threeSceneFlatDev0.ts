@@ -1,4 +1,5 @@
 import { FLAT, PhysicsLoader, Project, Scene3D } from 'enable3d'
+import { logger } from '@enable3d/three-graphics/node_modules/@enable3d/common/dist/logger'
 
 import { Camera, Scene } from 'three'
 
