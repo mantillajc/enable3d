@@ -39,7 +39,7 @@ They are all listed as [peerDependencies](https://docs.npmjs.com/cli/v7/configur
 
 ```json
 {
-  "@types/matter-js": "^0.14.12",
+  "@types/matter-js": "^0.17.3",
   "@types/three": "~0.129.2",
   "matter-js": "^0.17.1",
   "phaser": "^3.54.0",
