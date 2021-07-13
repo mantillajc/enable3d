@@ -42,7 +42,7 @@ They are all listed as [peerDependencies](https://docs.npmjs.com/cli/v7/configur
   "@types/matter-js": "^0.17.3",
   "@types/three": "~0.129.2",
   "matter-js": "^0.17.1",
-  "phaser": "^3.54.0",
+  "phaser": "^3.55.2",
   "poly-decomp": "^0.3.0",
   "three": "~0.129.0"
 }
