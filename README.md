@@ -30,9 +30,15 @@ Visit the [enable3d website](https://enable3d.io) for documentation and examples
 
 ## Changelog
 
-### Upgrade to v0.22.0
+### Upgrade to v0.23.0 (soon)
 
-Please upgrade npm to v7. `npm i -g npm@latest`.
+Some useful packages are now available on npm:
+
+| Package                                                      | Description                                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| [`audio`](https://www.npmjs.com/package/@yandeu/audio)       | 🎵 Audio library for the Web Audio API.                                   |
+| [`keyboard`](https://www.npmjs.com/package/@yandeu/keyboard) | ⌨️ Handling of keyboard events.                                           |
+| [`tap`](https://www.npmjs.com/package/@yandeu/tap)           | 🖱️ Handling of user interactions such as mouse, touch and pointer events. |
 
 Enable3d now depends on the dependencies below.  
 They are all listed as [peerDependencies](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#peerdependencies).
@@ -47,6 +53,10 @@ They are all listed as [peerDependencies](https://docs.npmjs.com/cli/v7/configur
   "three": "~0.129.0"
 }
 ```
+
+### Upgrade to v0.22.0
+
+Please upgrade npm to v7. `npm i -g npm@latest`.
 
 ### Upgrade to v0.21.0
 
