@@ -9,6 +9,8 @@ class MainScene extends Scene3D {
     console.log('REVISION', THREE.REVISION)
     console.log('REVISION', REVISION)
 
+    this.physics.add.box({ y: 10, breakable: true })
+
     this.warpSpeed()
     this.camera.position.set(2, 2, 4)
 
